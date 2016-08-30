@@ -5,8 +5,14 @@
         </script>
         <script>
             $(document).ready(function(){
+                var audioElement = document.createElement('audio');
+                audioElement.setAttribute('src', 'op.ogg');
+                
+                $.get();
+                
                 $("op").click(function(){
-                   $(this).fadeOut(1000); 
+                   $(this).fadeOut(1000);
+                    audioElement.play();
                 });
             });
         </script>
