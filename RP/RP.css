@@ -1,3 +1,9 @@
+body {
+    background-image:url("../images/psy.png")
+    background-repeat: repeat;
+    background-position: 0% 0;  
+}
+
 #topbar, #extras {
     background-color: #775566;
     color: #EECCDD;

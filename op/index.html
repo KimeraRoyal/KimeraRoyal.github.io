@@ -4,15 +4,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
         </script>
         <script>
+            
             $(document).ready(function(){
-                var audioElement = document.createElement('audio');
-                audioElement.setAttribute('src', 'op.ogg');
+                var op = document.createElement('audio');
+                op.setAttribute('src', 'op.ogg');
+                var eyy = document.createElement('audio');
+                eyy.setAttribute('src', 'eyyy.ogg');
                 
                 $.get();
                 
-                $("op").click(function(){
-                   $(this).fadeOut(1000);
-                    audioElement.play();
+                $("op").mousedown(function(event){
+                    switch (event.which){
+                        case 1:
+                            $(this).fadeOut(1000);
+                            op.play();
+                            break;
+                        case 2:
+                            $(this).fadeOut(1000);
+                            op.play();
+                            break;
+                        case 3:
+                            $(this).fadeOut(1000);
+                            eyy.play();
+                            break;
+                    };
                 });
             });
         </script>
