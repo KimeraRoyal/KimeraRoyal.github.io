@@ -1,0 +1,33 @@
+:root
+{
+  --navbar-height: 40px;
+}
+
+.navigation
+{
+  background-color: #AAAAAA;
+
+  position: fixed;
+  text-align: center;
+  overflow: hidden;
+
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  z-index: 9999;
+  height: var(--navbar-height);
+}
+
+.navigation a
+{
+  background-color: #696969;
+
+  position: relative;
+  text-align: center;
+}
+
+#Body
+{
+  position: absolute;
+  top: var(--navbar-height);
+}
