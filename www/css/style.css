@@ -1,6 +1,7 @@
 :root
 {
   --navbar-height: 40px;
+  --footer-height: 40px;
 }
 
 .navigation
@@ -30,4 +31,17 @@
 {
   position: absolute;
   top: var(--navbar-height);
+  padding-bottom: var(--footer-height);
+}
+
+.footer
+{
+  background-color: #AAAAAA;
+  position: fixed;
+
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  z-index: 9999;
+  height: var(--footer-height);
 }
