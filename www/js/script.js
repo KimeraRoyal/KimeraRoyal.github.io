@@ -6,14 +6,17 @@ function onLoad()
     navbarButtons[i].onclick = onClickHeader;
 
     var destination = navbarButtons[i].getAttribute("data-destination");
-    console.log(window.location.hostname);
-    console.log(window.location.pathname);
+    if(destination == window.location.pathname)
+    {
+      navbarButtons[i].className += "active-navbar_button";
+    }
   }
 }
 
 function onClickHeader(event)
 {
   var destination = event.target.getAttribute("data-destination");
+  location.assign(location.hostname + destination);
 }
 
 window.onload = onLoad;
