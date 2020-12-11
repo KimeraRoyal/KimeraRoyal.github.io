@@ -16,7 +16,7 @@ function onLoad()
 function onClickHeader(event)
 {
   var destination = event.target.getAttribute("data-destination");
-  location.assign(location.hostname + destination);
+  location.assign(destination);
 }
 
 window.onload = onLoad;
