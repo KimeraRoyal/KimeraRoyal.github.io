@@ -1,47 +1,57 @@
 :root
 {
-  --navbar-height: 40px;
-  --footer-height: 40px;
+  --navbar-height: 60px;
+  --navbar-text-size: 20px;
+
+  --footer-height: 30px;
+  --footer-text-size: 14px;
 }
 
-.navigation
+.navigation, .footer
 {
   background-color: #AAAAAA;
 
-  position: fixed;
   text-align: center;
   overflow: hidden;
 
   left: 0%;
-  top: 0%;
   width: 100%;
   z-index: 9999;
-  height: var(--navbar-height);
+}
+
+.navigation
+{
+  border-bottom: 1px solid black;
+
+  position: fixed;
+
+  top: 0%;
+  padding: calc((var(--navbar-height) - var(--navbar-text-size)) / 2);
+  font-size: var(--navbar-text-size);
+}
+
+.footer
+{
+  border-top: 1px solid black;
+
+  position: fixed;
+
+  bottom: 0%;
+  padding: calc((var(--footer-height) - var(--footer-text-size)) / 2);
+  font-size: var(--footer-text-size);
 }
 
 .navigation a
 {
   background-color: #696969;
 
-  position: relative;
   text-align: center;
 }
 
 #Body
 {
   position: absolute;
+
   top: var(--navbar-height);
   padding-bottom: var(--footer-height);
-}
-
-.footer
-{
-  background-color: #AAAAAA;
-  position: fixed;
-
-  left: 0%;
-  bottom: 0%;
-  width: 100%;
-  z-index: 9999;
-  height: var(--footer-height);
 }
