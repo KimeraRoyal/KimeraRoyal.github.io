@@ -6,6 +6,7 @@
 SOURCE := src
 HEADER := $(SOURCE)/header.html
 FOOTER := $(SOURCE)/footer.html
+APPEND_MESSAGE := "<!-- Last modified by __USER__ on __DATE__ -->"
 
 #---------------------------------------------------------------------------------
 
@@ -15,11 +16,16 @@ TARGET_FILES := $(notdir $(SOURCE_FILES))
 
 #---------------------------------------------------------------------------------
 
+CURRENT_USER := $(shell whoami)
+CURRENT_DATE := $(shell date -I)
+
+#---------------------------------------------------------------------------------
+
 website : $(TARGET_FILES) $(LINKED_FILES)
 
 %.html : $(SOURCE)/%.html $(LINKED_FILES)
 	@ cat $(HEADER) > $@
 	@ cat $< | sed 's/^/\t/' >> $@
 	@ cat $(FOOTER) >> $@
-
-	
+	@ echo "" >> $@
+	@ echo $(APPEND_MESSAGE) | sed 's/__USER__/$(CURRENT_USER)/;s/__DATE__/$(CURRENT_DATE)/' >> $@
