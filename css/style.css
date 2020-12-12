@@ -1,15 +1,20 @@
 :root
 {
   --navbar-height: 60px;
-  --navbar-text-size: 20px;
-  --navbar-background-color: #AAAAAA;
-  --navbar-background-color-hover: #888888;
-  --navbar-text-color: #111111;
+  --navbar-text-size: 32px;
+  --navbar-background-color: #C9A7CF;
+  --navbar-background-color-hover: #AB87BA;
+  --navbar-text-color: #210E3F;
 
   --footer-height: 30px;
   --footer-text-size: 14px;
-  --footer-background-color: #AAAAAA;
-  --footer-text-color: #111111;
+  --footer-background-color: #C9A7CF;
+  --footer-text-color: #210E3F;
+
+  --scrolling-text-size: 14px;
+
+  --text-color: #210E3F;
+  --text-size: 20px;
 }
 
 body
@@ -61,7 +66,7 @@ body
 {
   text-align: center;
 
-  padding: 40px 1.5%;
+  padding: 5px 1.5%;
   margin: .5%;
 }
 
@@ -92,12 +97,14 @@ body
 
 #Body
 {
-  background-color: #DDAABB;
+  background-color: #FADDFF;
+  color: var(--text-color);
 
   width: 80%;
   max-width: 1000px;
   height: calc(100% - (var(--navbar-height) + var(--footer-height)));
 
+  font-size: var(--text-size);
   font-weight: 300;
 
   position: absolute;
@@ -107,5 +114,78 @@ body
   left: 0;
   right: 0;
   margin: auto;
-  padding: 0px 10px 10px var(--footer-height);
+  padding: 15px 15px 10px 15px;
+}
+
+#Body .center-text
+{
+  text-align: center;
+}
+
+#Portrait
+{
+  display: block;
+  text-align: center;
+
+  width: 40%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+
+.scroll-left, .scroll-right
+{
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-left p, .scroll-right p
+{
+  text-align: center;
+  position: relative;
+
+  width: 100%;
+  margin: 0;
+
+  font-size: var(--scrolling-text-size);
+}
+
+.scroll-left p
+{
+  transform:translateX(100%);
+  animation: scroll-left 40s linear infinite;
+}
+
+.scroll-right p
+{
+  transform:translateX(-100%);
+  animation: scroll-right 40s linear infinite;
+}
+
+@keyframes scroll-left
+{
+  0%
+  {
+    transform: translateX(100%);
+  }
+  100%
+  {
+    transform: translateX(-100%);
+  }
+}
+
+
+@keyframes scroll-right
+{
+  0%
+  {
+    transform: translateX(-100%);
+  }
+  100%
+  {
+    transform: translateX(100%);
+  }
 }
