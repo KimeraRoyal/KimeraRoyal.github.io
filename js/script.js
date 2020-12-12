@@ -1,22 +1,27 @@
+var body;
+var scrollProportion = 0;
+
 function onLoad()
 {
-  var navbarButtons = document.getElementsByClassName("navbar_button");
-  for(var i = 0; i < navbarButtons.length; i++)
-  {
-    navbarButtons[i].onclick = onClickHeader;
-
-    var destination = navbarButtons[i].getAttribute("data-destination");
-    if(destination == window.location.pathname)
-    {
-      navbarButtons[i].className += "active-navbar_button";
-    }
-  }
+  body = document.getElementById("body");
+  body.onscroll = scrollBody;
 }
 
-function onClickHeader(event)
+function scrollBody()
 {
-  var destination = event.target.getAttribute("data-destination");
-  location.assign(destination);
+  var maxScroll = body.scrollHeight - body.clientHeight;
+  if(maxScroll > 0)
+  {
+    scrollProportion = body.scrollTop / maxScroll;
+  }
+  else
+  {
+    scrollProportion = 0;
+  }
+
+  scrollProportion = Math.min(Math.max(scrollProportion, 0), 1);
+
+  console.log(scrollProportion);
 }
 
 window.onload = onLoad;
