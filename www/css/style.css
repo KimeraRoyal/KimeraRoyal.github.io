@@ -2,15 +2,23 @@
 {
   --navbar-height: 60px;
   --navbar-text-size: 20px;
+  --navbar-background-color: #AAAAAA;
+  --navbar-background-color-hover: #888888;
+  --navbar-text-color: #111111;
 
   --footer-height: 30px;
   --footer-text-size: 14px;
+  --footer-background-color: #AAAAAA;
+  --footer-text-color: #111111;
+}
+
+body
+{
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .navigation, .footer
 {
-  background-color: #AAAAAA;
-
   text-align: center;
   overflow: hidden;
 
@@ -21,6 +29,10 @@
 
 .navigation
 {
+  background-color: var(--navbar-background-color);
+  color: var(--navbar-text-color);
+  font-weight: 700;
+
   border-bottom: 2px solid black;
 
   position: fixed;
@@ -32,6 +44,10 @@
 
 .footer
 {
+  background-color: var(--footer-background-color);
+  color: var(--footer-text-color);
+  font-weight: 300;
+
   border-top: 2px solid black;
 
   position: fixed;
@@ -45,18 +61,51 @@
 {
   text-align: center;
 
-  padding: 40px 2%;
+  padding: 40px 1.5%;
+  margin: .5%;
 }
 
-.navigation .active-navbar_button
+.navigation a:link
 {
-  background-color: #696969;
+  text-decoration: none;
+  color: var(--navbar-text-color);
+}
+
+.navigation a:visited
+{
+  text-decoration: none;
+  color: var(--navbar-text-color);
+}
+
+.navigation a:hover
+{
+  text-decoration: none;
+  background-color: var(--navbar-background-color-hover);
+  color: var(--navbar-text-color);
+}
+
+.navigation a:active
+{
+  text-decoration: none;
+  color: var(--navbar-text-color);
 }
 
 #Body
 {
+  background-color: #DDAABB;
+
+  width: 80%;
+  max-width: 1000px;
+  height: calc(100% - (var(--navbar-height) + var(--footer-height)));
+
+  font-weight: 300;
+
   position: absolute;
+  overflow: auto;
 
   top: var(--navbar-height);
-  padding-bottom: var(--footer-height);
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0px 10px 10px var(--footer-height);
 }
