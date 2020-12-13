@@ -5,6 +5,7 @@ var bgContext;
 var optimalHeight = 722;
 
 var scrollProportion = 0;
+var currentScrollOffset = 0;
 
 var bgParticles = {};
 var bgParticleIndex = 0;
@@ -24,7 +25,9 @@ var bgParticleProperties =
   minYSpeed: 2, maxYSpeed: 5,
   particleSize: 3,
 
-  maxLife: 200
+  maxLife: 300,
+
+  scrollOffset: 500
 };
 
 function BGParticle()
@@ -33,6 +36,8 @@ function BGParticle()
   {
     this.x = (Math.random() * (bgCanvas.width + bgCanvas.height)) - bgCanvas.height;
     this.y = 0;
+
+    this.startingOffset = currentScrollOffset;
 
     this.xSpeed = (Math.random() * (bgParticleProperties.maxXSpeed - bgParticleProperties.minXSpeed)) + bgParticleProperties.minXSpeed;
     this.ySpeed = (Math.random() * (bgParticleProperties.maxYSpeed - bgParticleProperties.minYSpeed)) + bgParticleProperties.minYSpeed;
@@ -62,10 +67,11 @@ BGParticle.prototype.update = function()
 
 BGParticle.prototype.draw = function()
 {
+
   var lifetimePercentage = this.currentLife / bgParticleProperties.maxLife;
 
   bgContext.fillStyle = "rgba(255, 255, 255, " +  (1 - lifetimePercentage) + ")";
-  bgContext.fillRect(this.x, this.y, bgParticleProperties.particleSize, bgParticleProperties.particleSize);
+  bgContext.fillRect(this.x, this.y - (currentScrollOffset - this.startingOffset), bgParticleProperties.particleSize, bgParticleProperties.particleSize);
 }
 
 function onLoad()
@@ -93,10 +99,10 @@ function scrollBody()
   {
     scrollProportion = 0;
   }
+    console.log(currentScrollOffset);
 
   scrollProportion = Math.min(Math.max(scrollProportion, 0), 1);
-
-  console.log(scrollProportion);
+  currentScrollOffset = bgParticleProperties.scrollOffset * scrollProportion;
 }
 
 function loadCanvas()
