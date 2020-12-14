@@ -184,7 +184,7 @@ body
 
 #Popup
 {
-  background-color: var(--navbar-background-color);
+  background-color: #FADDFF;
   color: var(--navbar-text-color);
   font-weight: 500;
 
@@ -195,8 +195,10 @@ body
 
   left: 50%;
   top: 50%;
-  width: 500px;
+  width: 33%;
   transform:translate(-50%, -50%);
+
+  padding: 4px;
 
   transition: opacity 300ms linear;
 
@@ -220,6 +222,8 @@ body
   background-color: var(--navbar-background-color);
 
   line-height: 50px;
+
+  border-bottom: 2px solid black;
 
   left: 0;
   width: 100%;
