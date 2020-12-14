@@ -152,7 +152,7 @@ body
 
   width: 80%;
   max-width: 1000px;
-  height: calc(100% - (var(--navbar-height) + var(--footer-height)));
+  height: calc(100% - (var(--navbar-height) + var(--footer-height)) - 30px);
 
   font-size: var(--text-size);
   font-weight: 300;
@@ -164,10 +164,11 @@ body
   overflow: auto;
 
   top: var(--navbar-height);
+  bottom: var(--footer-height);
   left: 0;
   right: 0;
   margin: auto;
-  padding: 15px 15px 10px 15px;
+  padding: 15px 15px 15px 15px;
 
   transition: filter 200ms linear;
 }
@@ -213,7 +214,7 @@ body
   width: 33%;
   transform:translate(-50%, -50%);
 
-  padding: 4px;
+  padding: 4px 8px 8px 8px;
 
   transition: opacity 300ms linear;
 
@@ -266,8 +267,35 @@ body
 
 .art-grid-column img
 {
-  margin-top: 8px;
   vertical-align: middle;
+}
+
+/* Music Grid */
+#Music-grid
+{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.music-grid-column
+{
+  flex: 33%;
+}
+
+.music-grid-cell
+{
+  text-align: left;
+
+  margin-bottom: 25px;
+}
+
+.music-grid-cell audio
+{
+  display: block;
+
+  margin-top: 10px;
 }
 
 /* Animated Text */

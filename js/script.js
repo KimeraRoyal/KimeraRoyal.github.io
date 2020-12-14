@@ -253,13 +253,17 @@ function addArt(art)
 function loadArt()
 {
   var artGrid = document.getElementById("art-grid");
-  for(var i = 0; i < maxColumns; i++)
+  if(artGrid != null)
   {
-    var column = document.createElement("div");
-    column.className = "art-grid-column";
-    artGrid.appendChild(column);
-    columns[i] = column;
-  }
+    document.onclick = onClickDocument;
+
+    for(var i = 0; i < maxArtColumns; i++)
+    {
+      var column = document.createElement("div");
+      column.className = "art-grid-column";
+      artGrid.appendChild(column);
+      columns[i] = column;
+    }
 
     for(var i = 0; i < artworkJSON.objects.length; i++)
     {
@@ -268,6 +272,50 @@ function loadArt()
   }
 }
 
+/* Music Page */
+
+var maxMusicColumns = 3;
+var musicElements = [];
+
+function addMusic(music)
+{
+  var musicElement = document.createElement("div");
+  musicElement.setAttribute("data-id", music.id);
+  musicElement.innerHTML = music.name + "\n";
+
+  musicElement.className = "music-grid-cell";
+
+  var musicAudio = document.createElement("audio");
+  musicAudio.controls = true;
+
+  var musicAudioSrc = document.createElement("source");
+  musicAudioSrc.setAttribute("src", music.url);
+  musicAudioSrc.setAttribute("type", "audio/mpeg");
+
+  musicAudio.appendChild(musicAudioSrc);
+  musicElement.appendChild(musicAudio);
+
+  columns[music.id % maxMusicColumns].appendChild(musicElement);
+  musicElements[music.id] = musicElement;
+}
+
+function loadMusic()
+{
+  var musicGrid = document.getElementById("music-grid");
+  if(musicGrid != null)
+  {
+    for(var i = 0; i < maxMusicColumns; i++)
+    {
+      var column = document.createElement("div");
+      column.className = "music-grid-column";
+      musicGrid.appendChild(column);
+      columns[i] = column;
+    }
+
+    for(var i = 0; i < musicJSON.objects.length; i++)
+    {
+      addMusic(musicJSON.objects[i]);
+    }
   }
 }
 
@@ -372,11 +420,8 @@ function onLoad()
   body = document.getElementById("body");
   body.onscroll = scrollBody;
 
-  if(document.getElementById("art-grid") != null)
-  {
-    document.onclick = onClickDocument;
-    loadArt();
-  }
+  loadArt();
+  loadMusic();
 
   bgCanvas = document.getElementById("background-particles");
 
