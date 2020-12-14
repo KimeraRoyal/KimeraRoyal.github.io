@@ -1,0 +1,84 @@
+<head>
+  <title>SKELETON ZONE!!!</title>
+  <style>
+    body
+    {
+      background-image: url("walking skeleton.gif");
+
+      animation: background-scroll 200s linear infinite, background-zoom 40s ease-in-out infinite;
+    }
+
+    @keyframes background-scroll
+    {
+      0%
+      {
+        background-position: left 0% top 0%;
+      }
+      100%
+      {
+        background-position: left 1000% top 100%;
+      }
+    }
+
+    @keyframes background-zoom
+    {
+      0%
+      {
+        background-size: 151px 200px;
+      }
+      50%
+      {
+        background-size: 75px 100px;
+      }
+      0%
+      {
+        background-size: 151px 200px;
+      }
+    }
+
+    #Title
+    {
+      position: fixed;
+
+      left: 50%;
+      top: 50%;
+      transform:translate(-50%, -300%);
+    }
+
+    #Skeleton
+    {
+      position: fixed;
+
+      left: 50%;
+      top: 50%;
+      height: 400px;
+      transform:translate(-50%, -30%);
+
+      animation: skeleton-move 30s ease-in-out infinite;
+    }
+
+    @keyframes skeleton-move
+    {
+      0%
+      {
+        transform: translate(-50%, -30%) rotate(0deg);
+      }
+      33%
+      {
+        transform: translate(0%, -30%) rotate(20deg);
+      }
+      66%
+      {
+        transform: translate(-100%, -30%) rotate(-20deg);
+      }
+      100%
+      {
+        transform: translate(-50%, -30%) rotate(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <img id="title" src="TITLE.gif" alt="WELCOME TO THE SKELETON ZONE!!!">
+  <img id="skeleton" src="dool skeet.jpg" alt="really cool skeleton">
+</body>
