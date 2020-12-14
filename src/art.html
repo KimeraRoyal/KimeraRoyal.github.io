@@ -1,3 +1,14 @@
+<script src="js/artworkJSON.js"></script>
 <div id="body">
-  <p>Art</p>
+  <h1 class="center-text">My Artwork</h1>
+  <select name="zoom" id="art-zoom" selected="4" onchange="zoomSelected()">
+  <option value="4">4x</option>
+  <option value="2">2x</option>
+  <option value="1">1x</option>
+  </select>
+  <div id="art-grid"> </div>
+</div>
+<div id="popup" class="popup-hidden">
+  <div id="popup-header"> Betty (Clown) </div>
+  <img id="popup-image" src="images/art/Betty_Clown.png" alt="Betty Clown">
 </div>

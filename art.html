@@ -2,12 +2,12 @@
   <link rel="shortcut icon" href="images/favicon.ico">
   <title>KIMERA ZONE</title>
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  
   <script src="js/script.js"></script>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
   <div id="background-image"></div>
@@ -22,12 +22,23 @@
     <a href = "aboutMe.html">About Me</a>
     <a href = "contacts.html">Contact</a>
   </div>
+	<script src="js/artworkJSON.js"></script>
 	<div id="body">
-	  <p>Art</p>
+	  <h1 class="center-text">My Artwork</h1>
+	  <select name="zoom" id="art-zoom" selected="4" onchange="zoomSelected()">
+	  <option value="4">4x</option>
+	  <option value="2">2x</option>
+	  <option value="1">1x</option>
+	  </select>
+	  <div id="art-grid"> </div>
+	</div>
+	<div id="popup" class="popup-hidden">
+	  <div id="popup-header"> Betty (Clown) </div>
+	  <img id="popup-image" src="images/art/Betty_Clown.png" alt="Betty Clown">
 	</div>
   <div class="footer">
     <div class="footer_text">© Copyright 2020 Kimera Royal</div>
   </div>
 </body>
 
-<!-- Last modified by stink on 2020-12-13 -->
+<!-- Last modified by stink on 2020-12-14 -->
