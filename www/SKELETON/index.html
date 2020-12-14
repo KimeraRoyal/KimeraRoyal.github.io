@@ -77,6 +77,20 @@
       }
     }
   </style>
+  <script>
+    function onLoad()
+    {
+      var music = new Audio();
+      music.src = "skeleton.ogg";
+      music.loop = true;
+      music.addEventListener("canplaythrough", function()
+      {
+        music.play();
+      });
+    }
+
+    window.onload = onLoad;
+  </script>
 </head>
 <body>
   <img id="title" src="TITLE.gif" alt="WELCOME TO THE SKELETON ZONE!!!">
