@@ -121,25 +121,11 @@ body
   background-position: right 0% top 0%;
 
   filter: blur(2px);
-
-  animation: background-scroll 120s linear infinite;
 }
 
 #Background-Particles
 {
   filter: blur(1px);
-}
-
-@keyframes background-scroll
-{
-  0%
-  {
-    background-position: right 0% top 0%;
-  }
-  100%
-  {
-    background-position: right 100% top 200%;
-  }
 }
 
 /* Main Site Content */

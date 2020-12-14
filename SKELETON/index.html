@@ -84,10 +84,10 @@
       var music = new Audio();
       music.src = "skeleton.ogg";
       music.loop = true;
-      music.addEventListener("canplaythrough", function()
+      document.getElementById("skeleton").onclick = function()
       {
         music.play();
-      });
+      };
     }
 
     window.onload = onLoad;

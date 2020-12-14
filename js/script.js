@@ -11,6 +11,46 @@ function lerp(a, b, amount)
   return a + (b - a) * amount;
 }
 
+/* BG Scroll */
+var bgImage;
+var bgScrollX = 0;
+var bgScrollY = 0;
+
+var displayBgScrollX = 0;
+var displayBgScrollY = 0;
+
+var bgScrollProperties =
+{
+  bgScrollXSpeed: -0.3,
+  bgScrollYSpeed: 1.2,
+
+  mouseMoveOffset: 3,
+  scrollOffset: 60
+}
+
+function initBgScroll()
+{
+  bgImage = document.getElementById("background-image");
+  var bgScrollX = 0;
+  var bgScrollY = 0;
+}
+
+function updateBgScroll()
+{
+  var xScrollAmount = deltaTime;
+
+  bgScrollX += bgScrollProperties.bgScrollXSpeed * deltaTime;
+  bgScrollY += bgScrollProperties.bgScrollYSpeed * deltaTime;
+
+  var trueDisplayScrollX = bgScrollX - (mouseProportionX * bgScrollProperties.mouseMoveOffset);
+  var trueDisplayScrollY = bgScrollY + (mouseProportionY * bgScrollProperties.mouseMoveOffset) - (scrollProportion * bgScrollProperties.scrollOffset);
+
+  displayBgScrollX = lerp(displayBgScrollX, trueDisplayScrollX, 0.1);
+  displayBgScrollY = lerp(displayBgScrollY, trueDisplayScrollY, 0.1);
+
+  bgImage.style.backgroundPosition = ("right " + displayBgScrollX + "% top " + displayBgScrollY + "%");
+}
+
 /* BG Particles */
 
 var bgParticles = {};
@@ -247,6 +287,10 @@ function calculateDeltaTime()
   totalTime = currentTime - startTime;
 
   deltaTime = (currentTime - lastTime) / 60;
+  if(deltaTime > 1)
+  {
+    deltaTime = 1;
+  }
 
   lastTime = currentTime;
 }
@@ -258,6 +302,8 @@ function loadCanvas()
   bgContext.fillStyle = "rgba(0, 0, 0, 0)";
   bgContext.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
 
+  initBgScroll();
+
   updateCanvas();
 }
 
@@ -268,6 +314,8 @@ function updateCanvas()
   popupValueChangedThisFrame = false;
 
   calculateDeltaTime();
+
+  updateBgScroll();
 
   updateBGParticles();
   for(var i in bgParticles)
