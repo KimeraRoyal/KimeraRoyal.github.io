@@ -181,9 +181,9 @@ function changeBlur(blur)
 }
 
 /* Art Page */
-
-var maxColumns = 4;
 var columns = [];
+
+var maxArtColumns = 4;
 var artElements = [];
 
 var artPopupShown = false;
@@ -206,7 +206,7 @@ function onClickArt(event)
     var popup = document.getElementById("popup");
     popup.className = "popup-visible";
 
-    var art = artwork.art[event.target.getAttribute("data-id")];
+    var art = artworkJSON.objects[event.target.getAttribute("data-id")];
 
     var popupHeader = document.getElementById("popup-header");
     popupHeader.innerHTML = art.name;
@@ -246,8 +246,7 @@ function addArt(art)
 
   artElement.onclick = onClickArt;
 
-  var columns = document.getElementsByClassName("art-grid-column");
-  columns[art.id % maxColumns].appendChild(artElement);
+  columns[art.id % maxArtColumns].appendChild(artElement);
   artElements[art.id] = artElement;
 }
 
@@ -262,9 +261,13 @@ function loadArt()
     columns[i] = column;
   }
 
-  for(var i = 0; i < artwork.art.length; i++)
-  {
-    addArt(artwork.art[i]);
+    for(var i = 0; i < artworkJSON.objects.length; i++)
+    {
+      addArt(artworkJSON.objects[i]);
+    }
+  }
+}
+
   }
 }
 
