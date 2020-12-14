@@ -27,7 +27,7 @@ var bgParticleProperties =
 
   minXSpeed: 4, maxXSpeed: 8,
   minYSpeed: 6, maxYSpeed: 10,
-  particleSize: 3,
+  minParticleSize: 2, maxParticleSize: 4,
 
   minTotalLife: 150,
   maxTotalLife: 700,
@@ -47,6 +47,8 @@ function BGParticle()
 
     this.xSpeed = (Math.random() * (bgParticleProperties.maxXSpeed - bgParticleProperties.minXSpeed)) + bgParticleProperties.minXSpeed;
     this.ySpeed = (Math.random() * (bgParticleProperties.maxYSpeed - bgParticleProperties.minYSpeed)) + bgParticleProperties.minYSpeed;
+
+    this.particleSize = (Math.random() * (bgParticleProperties.maxParticleSize - bgParticleProperties.minParticleSize)) + bgParticleProperties.minParticleSize;
 
     this.startingMouseProportionX = mouseProportionX;
     this.startingMouseProportionY = mouseProportionY;
@@ -89,7 +91,6 @@ BGParticle.prototype.update = function()
 
 BGParticle.prototype.draw = function()
 {
-
   var lifetimePercentage = this.currentLife / this.totalLife;
 
   bgContext.fillStyle = "rgba(255, 255, 255, " +  (1 - lifetimePercentage) + ")";
@@ -99,7 +100,7 @@ BGParticle.prototype.draw = function()
 
   this.displayX = lerp(this.displayX, displayX, 0.1);
   this.displayY = lerp(this.displayY, displayY, 0.1);
-  bgContext.fillRect(this.displayX, this.displayY, bgParticleProperties.particleSize, bgParticleProperties.particleSize);
+  bgContext.fillRect(this.displayX, this.displayY, this.particleSize, this.particleSize);
 }
 
 function updateBGParticles()
@@ -116,6 +117,114 @@ function updateBGParticles()
   for(var i in bgParticles)
   {
     bgParticles[i].update();
+  }
+}
+
+/* General Body */
+
+var bodyBlurred = false;
+
+function changeBlur(blur)
+{
+  if(bodyBlurred != blur)
+  {
+    if(blur)
+    {
+      document.getElementById("body").className += " blurred-body";
+    }
+    else
+    {
+      document.getElementById("body").className -= " blurred-body";
+    }
+    bodyBlurred = blur;
+  }
+}
+
+/* Art Page */
+
+var maxColumns = 4;
+var columns = [];
+var artElements = [];
+
+var artPopupShown = false;
+var popupValueChangedThisFrame = false;
+
+function zoomSelected()
+{
+  var artZoom = document.getElementById("art-zoom");
+  for(i = 0; i < columns.length; i++)
+  {
+    var zoomLevel = parseInt(artZoom.value);
+    columns[i].style.flex = (100 / zoomLevel) + "%";
+  }
+}
+
+function onClickArt(event)
+{
+  if(!artPopupShown && !popupValueChangedThisFrame)
+  {
+    var popup = document.getElementById("popup");
+    popup.className = "popup-visible";
+
+    var art = artwork.art[event.target.getAttribute("data-id")];
+
+    var popupHeader = document.getElementById("popup-header");
+    popupHeader.innerHTML = art.name;
+
+    var popupImage = document.getElementById("popup-image");
+    popupImage.setAttribute("src", art.url);
+    popupImage.setAttribute("alt", art.name);
+
+    artPopupShown = true;
+    popupValueChangedThisFrame = true;
+
+    changeBlur(true);
+  }
+}
+
+function onClickDocument(event)
+{
+  if(artPopupShown && !popupValueChangedThisFrame)
+  {
+    var popup = document.getElementById("popup");
+    popup.className = "popup-hidden";
+
+    artPopupShown = false;
+    popupValueChangedThisFrame = true;
+
+    changeBlur(false);
+  }
+}
+
+function addArt(art)
+{
+  var artElement = document.createElement("img");
+  artElement.setAttribute("src", art.url);
+  artElement.setAttribute("alt", art.name);
+  artElement.setAttribute("style", "width:100%");
+  artElement.setAttribute("data-id", art.id);
+
+  artElement.onclick = onClickArt;
+
+  var columns = document.getElementsByClassName("art-grid-column");
+  columns[art.id % maxColumns].appendChild(artElement);
+  artElements[art.id] = artElement;
+}
+
+function loadArt()
+{
+  var artGrid = document.getElementById("art-grid");
+  for(var i = 0; i < maxColumns; i++)
+  {
+    var column = document.createElement("div");
+    column.className = "art-grid-column";
+    artGrid.appendChild(column);
+    columns[i] = column;
+  }
+
+  for(var i = 0; i < artwork.art.length; i++)
+  {
+    addArt(artwork.art[i]);
   }
 }
 
@@ -155,6 +264,8 @@ function loadCanvas()
 function updateCanvas()
 {
   bgContext.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+  popupValueChangedThisFrame = false;
 
   calculateDeltaTime();
 
@@ -209,6 +320,12 @@ function onLoad()
 
   body = document.getElementById("body");
   body.onscroll = scrollBody;
+
+  if(document.getElementById("art-grid") != null)
+  {
+    document.onclick = onClickDocument;
+    loadArt();
+  }
 
   bgCanvas = document.getElementById("background-particles");
 
