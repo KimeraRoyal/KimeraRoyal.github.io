@@ -277,23 +277,75 @@ function loadArt()
 var maxMusicColumns = 3;
 var musicElements = [];
 
+var currentMusic;
+
+var forcedPause = false;
+
+function onMusicPlay(event)
+{
+  if(currentMusic != null)
+  {
+    currentMusic.pause();
+    forcedPause = true;
+  }
+  currentMusic = event.target;
+}
+
+function onMusicPause(event)
+{
+  if(forcedPause)
+  {
+    forcedPause = false;
+  }
+  else
+  {
+    if(currentMusic != null)
+    {
+      currentMusic = null;
+    }
+  }
+}
+
 function addMusic(music)
 {
+  // Main Container
   var musicElement = document.createElement("div");
-  musicElement.setAttribute("data-id", music.id);
-  musicElement.innerHTML = music.name + "\n";
-
   musicElement.className = "music-grid-cell";
+  musicElement.setAttribute("data-id", music.id);
 
+  // Element Header
+  var musicHeader = document.createElement("div");
+  musicHeader.className = "music-grid-cell-header";
+  musicElement.appendChild(musicHeader);
+
+  var musicHeaderName = document.createElement("div");
+  musicHeaderName.className = "music-grid-cell-header-name";
+  musicHeaderName.innerHTML = music.name;
+  musicHeader.appendChild(musicHeaderName);
+
+  var musicHeaderYear = document.createElement("div");
+  musicHeaderYear.className = "music-grid-cell-header-year";
+  musicHeaderYear.innerHTML = musicDescriptionsJSON.objects[music.id].year;
+  musicHeader.appendChild(musicHeaderYear);
+
+  // Audio Element
   var musicAudio = document.createElement("audio");
   musicAudio.controls = true;
+  musicAudio.onplay = onMusicPlay;
+  musicAudio.onpause = onMusicPause;
+  musicElement.appendChild(musicAudio);
 
+  // Audio Source: The respective music file
   var musicAudioSrc = document.createElement("source");
   musicAudioSrc.setAttribute("src", music.url);
   musicAudioSrc.setAttribute("type", "audio/mpeg");
-
   musicAudio.appendChild(musicAudioSrc);
-  musicElement.appendChild(musicAudio);
+
+  // Element Description: A short description. Taken from different JSON file.
+  var musicDescription = document.createElement("div");
+  musicDescription.className = "music-grid-cell-description";
+  musicDescription.innerHTML = "\"" + musicDescriptionsJSON.objects[music.id].description + "\"";
+  musicElement.appendChild(musicDescription);
 
   columns[music.id % maxMusicColumns].appendChild(musicElement);
   musicElements[music.id] = musicElement;
