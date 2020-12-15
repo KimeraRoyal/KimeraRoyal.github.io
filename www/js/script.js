@@ -11,6 +11,33 @@ function lerp(a, b, amount)
   return a + (b - a) * amount;
 }
 
+/* Delta Time */
+
+var startTime = 0;
+var lastTime = 0;
+
+var totalTime = 0;
+var deltaTime = 1;
+
+function initializeDeltaTime()
+{
+  startTime = Date.now();
+}
+
+function calculateDeltaTime()
+{
+  var currentTime = Date.now();
+  totalTime = currentTime - startTime;
+
+  deltaTime = (currentTime - lastTime) / 60;
+  if(deltaTime > 1)
+  {
+    deltaTime = 1;
+  }
+
+  lastTime = currentTime;
+}
+
 /* BG Scroll */
 var bgImage;
 var bgScrollX = 0;
@@ -371,33 +398,6 @@ function loadMusic()
   }
 }
 
-/* Delta Time */
-
-var startTime = 0;
-var lastTime = 0;
-
-var totalTime = 0;
-var deltaTime = 1;
-
-function initializeDeltaTime()
-{
-  startTime = Date.now();
-}
-
-function calculateDeltaTime()
-{
-  var currentTime = Date.now();
-  totalTime = currentTime - startTime;
-
-  deltaTime = (currentTime - lastTime) / 60;
-  if(deltaTime > 1)
-  {
-    deltaTime = 1;
-  }
-
-  lastTime = currentTime;
-}
-
 /* Canvas */
 
 function loadCanvas()
@@ -433,6 +433,55 @@ function setCanvasSize()
 {
   bgCanvas.width = window.innerWidth / (window.innerHeight / optimalHeight);
   bgCanvas.height = optimalHeight;
+}
+
+/* Page Transitions */
+
+var transitionLength = 300;
+var screenTransition;
+
+function openLink(url, event)
+{
+  if(event.target.target == "_blank")
+  {
+    window.open(url, "_blank");
+    screenTransition.className = "hide";
+  }
+  else
+  {
+    window.location = url;
+  }
+}
+
+function onLinkClicked(event)
+{
+  event.preventDefault();
+
+  setTimeout(function()
+  {
+    if(event.target.parentElement.href != null)
+    {
+      openLink(event.target.parentElement.href, event);
+    }
+    else
+    {
+      openLink(event.target.href, event);
+    }
+  }, transitionLength);
+
+  screenTransition.className = "show";
+}
+
+function loadPageTransitions()
+{
+  screenTransition = document.getElementById("screen-transition");
+  screenTransition.className = "hide";
+
+  var links = document.querySelectorAll("a");
+  for(var i = 0; i < links.length; i++)
+  {
+    links[i].onclick = onLinkClicked;
+  }
 }
 
 /* Window Events */
@@ -474,6 +523,8 @@ function onLoad()
 
   loadArt();
   loadMusic();
+
+  loadPageTransitions();
 
   bgCanvas = document.getElementById("background-particles");
 
