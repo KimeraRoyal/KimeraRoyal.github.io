@@ -252,6 +252,7 @@ body
 }
 
 /* Art Grid */
+
 #Art-grid
 {
   text-align: center;
@@ -262,20 +263,26 @@ body
 
 .art-grid-column
 {
-  flex: 25%;
+  flex: 23.75%;
+
+  margin: 0px 4px 0px 4px;
 }
 
 .art-grid-column img
 {
   vertical-align: middle;
+
+  margin-bottom: 8px;
 }
 
 /* Music Grid */
+
 #Music-grid
 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+
   padding: 0 4px;
 }
 

@@ -195,7 +195,7 @@ function zoomSelected()
   for(i = 0; i < columns.length; i++)
   {
     var zoomLevel = parseInt(artZoom.value);
-    columns[i].style.flex = (100 / zoomLevel) + "%";
+    columns[i].style.flex = ((95 / zoomLevel)) + "%";
   }
 }
 
