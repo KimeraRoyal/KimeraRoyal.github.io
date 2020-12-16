@@ -446,6 +446,12 @@ function openLink(url, event)
   {
     window.open(url, "_blank");
     screenTransition.className = "hide";
+
+    var pauseMusic = event.target.getAttribute("data-pause-music");
+    if(pauseMusic == null || pauseMusic == true)
+    {
+      currentMusic.pause();
+    }
   }
   else
   {
