@@ -445,17 +445,12 @@ function openLink(url, event)
   if(event.target.target == "_blank")
   {
     window.open(url, "_blank");
+    screenTransition.className = "hide";
   }
   else
   {
     window.location = url;
   }
-
-  // Just in case the user presses "back" or opens a link in a new tab
-  setTimeout(function()
-  {
-    screenTransition.className = "hide";
-  }, 100);
 }
 
 function onLinkClicked(event)
