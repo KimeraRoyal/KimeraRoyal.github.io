@@ -432,6 +432,65 @@ body
   margin-top: 10px;
 }
 
+/* Link Grid */
+
+#Link-grid
+{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 0 4px;
+}
+
+.link-grid-column
+{
+  flex: 45%;
+
+  width: 100%;
+  margin: 10px;
+}
+
+.link-grid-cell
+{
+  background-color: #FADDFF;
+
+  text-align: left;
+
+  width: 100%;
+  height: 30%;
+}
+
+.link-grid-cell-header
+{
+  background-color: var(--navbar-background-color);
+  font-weight: 500;
+
+  text-align: center;
+
+  border-bottom: 2px solid black;
+
+  width: 60%;
+  height: 20px;
+  padding: 5px;
+
+  float: right;
+}
+
+.link-grid-cell-image
+{
+  float: left;
+  width: 33%;
+}
+
+.link-grid-cell-description
+{
+  float: left;
+
+  width: 60%;
+  padding: 10px 5px 5px 15px;
+}
+
 /* Animated Text */
 
 .scroll-left, .scroll-right
