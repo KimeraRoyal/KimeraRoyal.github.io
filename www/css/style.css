@@ -231,6 +231,24 @@ body
   text-align: center;
 }
 
+#Body .image-left, #Body .image-right
+{
+  border: 2px solid black;
+
+  width: 30%;
+  margin: 10px 10px 10px 10px;
+}
+
+#Body .image-left
+{
+  float: left;
+}
+
+#Body .image-right
+{
+  float: right;
+}
+
 .blurred-body
 {
   filter: blur(3px);
