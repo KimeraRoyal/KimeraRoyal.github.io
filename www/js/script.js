@@ -38,7 +38,65 @@ function calculateDeltaTime()
   lastTime = currentTime;
 }
 
+/* Color Modes */
+
+var colorModeToggle;
+var currentColorMode;
+
+var colorModeValues =
+[
+  {
+    primaryColor: "#FADDFF",
+    primaryColorHover: "#E0B2F7",
+    secondaryColor: "#C9A7CF",
+    secondaryColorHover: "#AB87BA",
+    outlineColor: "#210E3F",
+    textColor: "#210E3F",
+  },
+  {
+    primaryColor: "#58336B",
+    primaryColorHover: "#4A2154",
+    secondaryColor: "#210E3F",
+    secondaryColorHover: "#2D0E69",
+    outlineColor: "#FADDFF",
+    textColor: "#FADDFF",
+  }
+];
+
+function setColorModeValues(mode)
+{
+  document.documentElement.style.setProperty("--primary-color", colorModeValues[mode].primaryColor);
+  document.documentElement.style.setProperty("--primary-color-hover", colorModeValues[mode].primaryColorHover);
+  document.documentElement.style.setProperty("--secondary-color", colorModeValues[mode].secondaryColor);
+  document.documentElement.style.setProperty("--secondary-color-hover", colorModeValues[mode].secondaryColorHover);
+  document.documentElement.style.setProperty("--outline-color", colorModeValues[mode].outlineColor);
+  document.documentElement.style.setProperty("--text-color", colorModeValues[mode].textColor);
+}
+
+function toggleColorMode()
+{
+  currentColorMode = 1 - currentColorMode;
+  if(currentColorMode == 0)
+  {
+    colorModeToggle.innerHTML = "Switch to Dark Mode.";
+  }
+  else
+  {
+    colorModeToggle.innerHTML = "Switch to Light Mode.";
+  }
+  setColorModeValues(currentColorMode);
+}
+
+function initializeColorMode()
+{
+  colorModeToggle = document.getElementById("colormode-toggle");
+
+  currentColorMode = 0;
+  setColorModeValues(currentColorMode);
+}
+
 /* BG Scroll */
+
 var bgImage;
 var bgScrollX = 0;
 var bgScrollY = 0;
@@ -82,6 +140,8 @@ function updateBgScroll()
 
 var bgParticles = {};
 var bgParticleIndex = 0;
+
+var runningParticles = true;
 
 var bgParticleSpawnTimer = 0;
 var currentBgParticles = 0;
@@ -184,6 +244,20 @@ function updateBGParticles()
   for(var i in bgParticles)
   {
     bgParticles[i].update();
+  }
+}
+
+function toggleParticles()
+{
+  runningParticles = !runningParticles;
+  var buttonParticles = document.getElementById("button-particles");
+  if(runningParticles)
+  {
+    buttonParticles.className += " pressed";
+  }
+  else
+  {
+    buttonParticles.className -= " pressed";
   }
 }
 
@@ -420,10 +494,13 @@ function updateCanvas()
 
   updateBgScroll();
 
-  updateBGParticles();
-  for(var i in bgParticles)
+  if(runningParticles)
   {
-    bgParticles[i].draw();
+    updateBGParticles();
+    for(var i in bgParticles)
+    {
+      bgParticles[i].draw();
+    }
   }
 
   window.requestAnimationFrame(updateCanvas);
@@ -526,6 +603,8 @@ function onLoad()
 
   body = document.getElementById("body");
   body.onscroll = scrollBody;
+
+  initializeColorMode();
 
   loadArt();
   loadMusic();
