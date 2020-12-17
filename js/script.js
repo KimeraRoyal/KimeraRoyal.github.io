@@ -442,13 +442,13 @@ var screenTransition;
 
 function openLink(url, event)
 {
-  if(event.target.target == "_blank")
+  if(event.target.target == "_blank" || event.target.parentElement.target == "_blank")
   {
     window.open(url, "_blank");
     screenTransition.className = "hide";
 
     var pauseMusic = event.target.getAttribute("data-pause-music");
-    if(pauseMusic == null || pauseMusic == true)
+    if(currentMusic != null && (pauseMusic == null || pauseMusic == true))
     {
       currentMusic.pause();
     }
