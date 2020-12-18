@@ -267,7 +267,7 @@ function getDisplayingParticles()
 {
   if(localStorage.getItem("kimera-really-works-particle") == null)
   {
-    localStorage.setItem("kimera-really-works-particle", 1);
+    localStorage.setItem("kimera-really-works-particle", isMobile ? 0 : 1);
   }
   return localStorage.getItem("kimera-really-works-particle");
 }
