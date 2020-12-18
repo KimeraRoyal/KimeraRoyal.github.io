@@ -633,6 +633,10 @@ function onLoad()
   document.onmousemove = onMouseMove;
 
   isMobile = detectMobileBrowser(navigator.userAgent || navigator.vendor || window.opera);
+  if(isMobile)
+  {
+    maxMusicColumns = 2;
+  }
 
   body = document.getElementById("body");
   body.onscroll = scrollBody;
