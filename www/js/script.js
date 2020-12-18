@@ -41,7 +41,6 @@ function calculateDeltaTime()
 /* Color Modes */
 
 var colorModeToggle;
-var currentColorMode;
 
 var colorModeValues =
 [
@@ -73,26 +72,41 @@ function setColorModeValues(mode)
   document.documentElement.style.setProperty("--text-color", colorModeValues[mode].textColor);
 }
 
+function getCurrentColorMode()
+{
+  if(!localStorage.getItem("kimera-really-works-color-mode"))
+  {
+    localStorage.setItem("kimera-really-works-color-mode", 0);
+  }
+  return localStorage.getItem("kimera-really-works-color-mode");
+}
+
 function toggleColorMode()
 {
-  currentColorMode = 1 - currentColorMode;
-  if(currentColorMode == 0)
+  localStorage.setItem("kimera-really-works-color-mode", 1 - getCurrentColorMode());
+
+  setColorModeValues(localStorage.getItem("kimera-really-works-color-mode"));
+  setColorModeToggleText();
+}
+
+function setColorModeToggleText()
+{
+  if(getCurrentColorMode() == 0)
   {
-    colorModeToggle.innerHTML = "Switch to Dark Mode.";
+    colorModeToggle.innerHTML = "Switch to Dark Mode";
   }
   else
   {
-    colorModeToggle.innerHTML = "Switch to Light Mode.";
+    colorModeToggle.innerHTML = "Switch to Light Mode";
   }
-  setColorModeValues(currentColorMode);
 }
 
 function initializeColorMode()
 {
   colorModeToggle = document.getElementById("colormode-toggle");
+  setColorModeToggleText();
 
-  currentColorMode = 0;
-  setColorModeValues(currentColorMode);
+  setColorModeValues(getCurrentColorMode());
 }
 
 /* BG Scroll */
@@ -141,10 +155,10 @@ function updateBgScroll()
 var bgParticles = {};
 var bgParticleIndex = 0;
 
-var runningParticles = true;
-
 var bgParticleSpawnTimer = 0;
 var currentBgParticles = 0;
+
+var particleToggle;
 
 var bgParticleProperties =
 {
@@ -247,18 +261,33 @@ function updateBGParticles()
   }
 }
 
-function toggleParticles()
+function getDisplayingParticles()
 {
-  runningParticles = !runningParticles;
-  var buttonParticles = document.getElementById("button-particles");
-  if(runningParticles)
+  if(localStorage.getItem("kimera-really-works-particle") == null)
   {
-    buttonParticles.className += " pressed";
+    localStorage.setItem("kimera-really-works-particle", isMobile ? 0 : 1);
+  }
+  return localStorage.getItem("kimera-really-works-particle");
+}
+
+function setParticleToggleText()
+{
+  if(getDisplayingParticles() == 1)
+  {
+    particleToggle.innerHTML = "Disable Particles";
   }
   else
   {
-    buttonParticles.className -= " pressed";
+    particleToggle.innerHTML = "Enable Particles";
   }
+}
+
+function toggleParticles()
+{
+  console.log(getDisplayingParticles());
+  localStorage.setItem("kimera-really-works-particle", 1 - getDisplayingParticles());
+
+  setParticleToggleText();
 }
 
 /* General Body */
@@ -494,7 +523,7 @@ function updateCanvas()
 
   updateBgScroll();
 
-  if(runningParticles)
+  if(getDisplayingParticles() == 1)
   {
     updateBGParticles();
     for(var i in bgParticles)
@@ -601,10 +630,14 @@ function onLoad()
 {
   document.onmousemove = onMouseMove;
 
+
   body = document.getElementById("body");
   body.onscroll = scrollBody;
 
   initializeColorMode();
+
+  particleToggle = document.getElementById("particles-toggle");
+  setParticleToggleText();
 
   loadArt();
   loadMusic();
