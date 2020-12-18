@@ -4,6 +4,8 @@ var bgCanvas;
 var bgContext;
 var optimalHeight = 722;
 
+var isMobile;
+
 /* Helper Functions */
 
 function lerp(a, b, amount)
@@ -265,7 +267,7 @@ function getDisplayingParticles()
 {
   if(localStorage.getItem("kimera-really-works-particle") == null)
   {
-    localStorage.setItem("kimera-really-works-particle", isMobile ? 0 : 1);
+    localStorage.setItem("kimera-really-works-particle", 1);
   }
   return localStorage.getItem("kimera-really-works-particle");
 }
@@ -630,6 +632,7 @@ function onLoad()
 {
   document.onmousemove = onMouseMove;
 
+  isMobile = detectMobileBrowser(navigator.userAgent || navigator.vendor || window.opera);
 
   body = document.getElementById("body");
   body.onscroll = scrollBody;
