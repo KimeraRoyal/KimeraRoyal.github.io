@@ -445,22 +445,22 @@ body
   padding: 10px 5px 0px 5px;
 }
 
-.music-grid-cell-description a:link
+#Body a:link
 {
   color: var(--text-color);
 }
 
-.music-grid-cell-description a:visited
+#Body a:visited
 {
   color: var(--text-color);
 }
 
-.music-grid-cell-description a:hover
+#Body a:hover
 {
   color: var(--text-color);
 }
 
-.music-grid-cell-description a:active
+#Body a:active
 {
   color: var(--text-color);
 }
