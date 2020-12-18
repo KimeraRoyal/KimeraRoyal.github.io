@@ -282,12 +282,12 @@ body
   margin: 10px 10px 10px 10px;
 }
 
-#Body .image-left
+#Body .image-left, .float-left
 {
   float: left;
 }
 
-#Body .image-right
+#Body .image-right, .float-right
 {
   float: right;
 }
@@ -529,6 +529,61 @@ body
 
   width: 60%;
   padding: 10px 5px 5px 15px;
+}
+
+/* Project Grid */
+
+#Project-grid
+{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 0 4px;
+}
+
+.project-grid-column
+{
+  width: 100%;
+  margin: 10px;
+}
+
+.project-grid-cell
+{
+  display: block;
+  background-color: var(--primary-color);
+
+  text-align: left;
+
+  width: 100%;
+  min-height: 230px;
+  margin-bottom: 30px;
+}
+
+.project-grid-cell-header
+{
+  background-color: var(--secondary-color);
+  font-weight: 500;
+
+  text-align: center;
+
+  border-bottom: 2px solid var(--outline-color);
+
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+}
+
+.project-grid-cell-image
+{
+  width: 33%;
+  margin: 10px;
+}
+
+.project-grid-cell-description
+{
+  width: 99%;
+  padding: 10px 20px 5px 15px;
 }
 
 /* Animated Text */
