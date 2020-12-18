@@ -1,23 +1,70 @@
 <div id="body">
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
-  <p>Projects</p><br><br><br><br>
+  <h1 class="center-text">My Projects</h1>
+  <div id="project-grid">
+    <div class="project-grid-column">
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Dustworld</div>
+        <img class="project-grid-cell-image float-right" src="images/projects/Dustworld.png" alt="Dustworld"></img>
+        <div class="project-grid-cell-description">A turn-based RPG set a century after an apocalypse, made in Unity 3D. I have been working on design ideas for this game for 5 or so years, and I finally decided to commit to creating a demo for it.<br>
+          <br>
+          Currently, I'm working on the combat system, which is almost figured, and once that is complete I will move on to creating an overworld for the game. With this framework complete, I will then be able to start working on creating an engaging experience!<br>
+        </div>
+      </div>
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Pacemecha DX</div>
+        <img class="project-grid-cell-image float-left" src="images/projects/Pacemecha DX.png" alt="Pacemecha DX"></img>
+        <div class="project-grid-cell-description">Building off of ideas that weren't feasible during the GMTK Game Jam 2020, I rebuilt Pacemecha from the ground up to be more stable and polished. Once I have released the demo for Dustworld, I will expand the Pacemecha DX prototype into a short, cohesive puzzle game of about an hour in length.<br>
+          <br>
+          This expanded version includes smooth map transitions, a dialogue system, a node-based visual scripting solution for creating entity AI, and more! Focusing on creating a solid code-base that could support vertical expansion is a key focus of this project (especially after dealing with the rush of a game jam).<br>
+        </div>
+      </div>
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Portfolio Website</div>
+        <a href="http://kimera-really.works/" target ="_blank">
+          <img class="project-grid-cell-image float-right" src="images/projects/Website.png" alt="Portfolio Website"></img>
+        </a>
+        <div class="project-grid-cell-description">
+          A personal portfolio website created entirely by me, using HTML, CSS, Javascript, Json, and a very small amount of Python. The site features a reactive, programatically animated particle background, multiple pages with interactable elements, a toggleable dark / light mode, and even mobile support!<br>
+          <br>
+          As the first full website I've programmed, I found creating this site to be a real challenge, but it has helped me develop a lot of important skills. The first time for anything is always the most difficult - I know that next time I make a website, I will be able to take the skills I learnt on this portfolio and put them into practice.<br>
+        </div>
+      </div>
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Pacemecha</div>
+        <a href="https://kim-royal.itch.io/pacemecha/" target ="_blank">
+          <img class="project-grid-cell-image float-left" src="images/projects/Pacemecha.png" alt="Pacemecha"></img>
+        </a>
+        <div class="project-grid-cell-description">
+          Pacemecha is a game developed over a weekend by me, do0ts, and LFOB, for the GMTK Game Jam 2020. The game is a grid-based puzzler where you remotely control a geriatric robot as he tries to escape from a junkyard. Unfortunately, the connection is poor, so all player inputs are slightly delayed: your first input will happen when you enter your second, your second will happen when you enter your third, and so on.<br>
+          <br>
+          The game also features a limited amount of actions per-button in some levels - taking the jam's theme of "Out of Control" literally - which means that the player has to carefully plan out their actions in order to beat the game's levels. The jam was tense, stressful, and full of ups and downs, but the experience was invaluable and really helped us all focus on developing our workflows and skills.<br>
+        </div>
+      </div>
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Keysword</div>
+        <img class="project-grid-cell-image float-right" src="images/projects/Forest.png" alt="Keysword"></img>
+        <div class="project-grid-cell-description">
+          Keysword is a typing / role-playing adventure game where the player has to utilise their keyboard in order to tackle all the challenges that face them in their quest for treasure and glory. I worked on some prototype gameplay / mockup graphics for the game in around June 2020, and I hope to expand on them further when time allows it.<br>
+        </div>
+      </div>
+
+      <div class="project-grid-cell">
+        <div class="project-grid-cell-header">Funny Bird Game 2</div>
+        <a href="https://kim-royal.itch.io/funny-bird-game-2/" target ="_blank">
+          <img class="project-grid-cell-image float-left" src="images/projects/Funny Bird Game.png" alt="Funny Bird Game 2"></img>
+        </a>
+        <div class="project-grid-cell-description">
+          Funny Bird Game 2 is my first experiment into homebrewing - creating games / programs for consoles without official development tools. This game is made for the Gameboy Advance using the <a href="https://devkitpro.org/" target="_blank">devkitPro toolchain</a> / <a href="https://www.coranac.com/tonc/text/toc.htm/" target="_blank">Tonc library</a> and was programmed entirely by me in C++.<br>
+          <br>
+          In addition to programming it, I also made all the assets - music, backgrounds, sprites, etc. It was a lot of fun to figure out how to tackle certain obstacles, like compressing my instrument samples to work at 8-bit 8kHz, or creating a scrolling parallax background with only one layer. Even the little challenges, like learning to use Makefiles, were rewarding and improved me as a designer, programmer, and so on.<br>
+        </div>
+        </div>
+
+    </div>
+  </div>
 </div>
