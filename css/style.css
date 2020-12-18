@@ -576,6 +576,8 @@ body
 
 .project-grid-cell-image
 {
+  border: 2px solid var(--outline-color);
+
   width: 33%;
   margin: 10px;
 }
